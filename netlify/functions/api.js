@@ -5,6 +5,6 @@ import app from "../../app.js";
 const api = express();
 
 api.use(express.json());
-api.use("/", app);
+api.use("/api", app);
 
 export const handler = serverless(api);
