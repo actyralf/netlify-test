@@ -1,6 +1,6 @@
-import "dotenv/config";
-import { exit } from "node:process";
 import express from "express";
+import app from "./app.js";
+import { exit } from "node:process";
 
 const PORT = process.env.PORT;
 
@@ -9,13 +9,11 @@ if (!PORT) {
   exit(1);
 }
 
-const app = express();
-app.use(express.json());
+const api = express();
 
-app.get("/", (_, res) => {
-  return res.json({ msg: "Hello from the Test API" });
-});
+api.use(express.json());
+api.use("/", app);
 
-app.listen(PORT, () => {
+api.listen(PORT, () => {
   console.log("Test API listening on port ", PORT);
 });
